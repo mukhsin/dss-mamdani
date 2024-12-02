@@ -42,7 +42,7 @@ new class extends Component {
                 </x-mary-menu-sub>
                 <x-mary-menu-sub title="Dashboard" icon="o-cog-6-tooth">
                     <x-mary-menu-item title="Rekomendasi Diskon" icon="o-receipt-percent" link="/rekomendasi/halaman1"/>
-                    <x-mary-menu-item title="Riwayat Perhitungan" icon="o-calculator" link="/rekomendasi/riwayat"/>
+                    {{-- <x-mary-menu-item title="Riwayat Perhitungan" icon="o-calculator" link="/rekomendasi/riwayat"/> --}}
                 </x-mary-menu-sub>
             </div>
 
@@ -61,7 +61,8 @@ new class extends Component {
                         <x-slot:actions>
                             <x-mary-button
                                 wire:click="logout"
-                                icon="o-arrow-right-on-rectangle"
+                                tooltip="Logout"
+                                icon="o-arrow-left-start-on-rectangle"
                                 class="btn-circle btn-ghost btn-sm"
                             />
                         </x-slot:actions>

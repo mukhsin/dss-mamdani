@@ -121,6 +121,7 @@ new class extends Component {
                 wire:model.live="dateFilter"
             />
             <x-mary-button
+                spinner
                 icon="o-plus"
                 label="Tambah Penjualan"
                 wire:click="create"
@@ -180,6 +181,7 @@ new class extends Component {
         <b>@uang($selectedPrice)</b>
         <x-slot:actions>
             <x-mary-button
+                spinner
                 label="{{ __('Batal') }}"
                 wire:click="closeModalPenjualanDelete()"
             />

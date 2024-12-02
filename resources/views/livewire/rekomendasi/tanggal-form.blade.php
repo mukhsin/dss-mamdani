@@ -45,7 +45,7 @@ new class extends Component {
 
     private function constructTglRentang(): void
     {
-        if ($this->rekomendasi->rekomendasi_id) {
+        if ($this->rekomendasi->tgl_awal && $this->rekomendasi->tgl_akhir) {
             $this->tgl_awal = Carbon::createFromFormat('Y-m-d', $this->rekomendasi->tgl_awal)->format('d-m-Y');
             $this->tgl_akhir = Carbon::createFromFormat('Y-m-d', $this->rekomendasi->tgl_akhir)->format('d-m-Y');
             $this->tgl_rentang = $this->tgl_awal . ' to ' . $this->tgl_akhir;

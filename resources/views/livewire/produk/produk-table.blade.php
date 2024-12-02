@@ -74,6 +74,7 @@ new class extends Component {
             {{ __('Data Produk') }}
         </h2>
         <x-mary-button
+            spinner
             icon="o-plus"
             label="Tambah Produk"
             wire:click="create"
@@ -127,6 +128,7 @@ new class extends Component {
         {{ __('Yakin ingin menghapus produk ' . $selectedName . '?') }}
         <x-slot:actions>
             <x-mary-button
+                spinner
                 label="{{ __('Batal') }}"
                 wire:click="closeModalProdukDelete()"
             />

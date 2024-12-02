@@ -45,19 +45,25 @@ new class extends Component {
 ?>
 
 <section class="space-y-6">
-    <header class="flex justify-between">
+    <header class="flex justify-between pb-6 border-b border-gray-100 dark:border-gray-900">
         <div class="flex items-center gap-2">
-            <x-mary-button
+            {{-- <x-mary-button
                 icon="o-chevron-left"
                 class="btn-circle btn-ghost"
                 wire:click="back()"
-            />
+            /> --}}
             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                 {{ __('Detail Produk') }}
             </h2>
         </div>
 
         <div class="flex gap-2">
+            <x-mary-button
+                spinner
+                icon="o-chevron-left"
+                label="Kembali"
+                wire:click="back()"
+            />
             <x-mary-button
                 spinner
                 icon="o-pencil"
@@ -95,6 +101,7 @@ new class extends Component {
         {{ __('Yakin ingin menghapus produk ' . __($produk->nama_produk) . '?') }}
         <x-slot:actions>
             <x-mary-button
+                spinner
                 label="{{ __('Batal') }}"
                 wire:click="closeModalProdukDelete()"
             />

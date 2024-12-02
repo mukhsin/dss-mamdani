@@ -55,13 +55,13 @@ new class extends Component {
 ?>
 
 <section class="space-y-6">
-    <header class="flex justify-between">
+    <header class="flex justify-between pb-6 border-b border-gray-100 dark:border-gray-900">
         <div class="flex items-center gap-2">
-            <x-mary-button
+            {{-- <x-mary-button
                 icon="o-chevron-left"
                 class="btn-circle btn-ghost"
                 wire:click="back()"
-            />
+            /> --}}
             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                 {{ __( $title ) }}
             </h2>
@@ -75,7 +75,7 @@ new class extends Component {
 
         <div class="flex gap-2">
             <x-mary-button label="{{ __('Simpan') }}" class="btn-primary" type="submit" spinner="save"/>
-            <x-mary-button label="{{ __('Batal') }}" wire:click="back()"/>
+            <x-mary-button label="{{ __('Batal') }}" wire:click="back()" spinner/>
         </div>
     </x-mary-form>
 
