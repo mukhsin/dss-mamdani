@@ -33,8 +33,8 @@ class DatabaseSeeder extends Seeder
         // Produk::factory(10)->create();
         // VariasiProduk::factory(50)->create();
 
-        Diskon::factory(50)->create();
-        $this->command->info('Diskon table seeded!');
+        // Diskon::factory(50)->create();
+        // $this->command->info('Diskon table seeded!');
         // Penjualan::factory(500)->create();
 
         $path = 'database/dump/dml_tb_produk.sql';
