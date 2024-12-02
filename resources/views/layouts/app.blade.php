@@ -46,23 +46,41 @@
     @endif
 
 </head>
-<body class="font-sans antialiased">
-<div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-    <livewire:_layout.navigation/>
 
-    <!-- Page Heading -->
-    @if (isset($header))
-        <header class="bg-white dark:bg-gray-800 shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
-    @endif
+<body class="min-h-screen font-sans antialiased bg-base-200/50 dark:bg-base-200">
+{{-- NAVBAR mobile only --}}
+<x-mary-nav sticky class="lg:hidden">
+    <x-slot:brand>
+        {{-- <div class="p-4 ms-2 text-xl font-bold border-b border-gray-200"> --}}
+        {{ config('app.name', 'Laravel') }}
+        {{-- </div> --}}
+    </x-slot:brand>
+    <x-slot:actions>
+        <label for="main-drawer" class="lg:hidden">
+            <x-mary-icon name="o-bars-3" class="cursor-pointer"/>
+        </label>
+    </x-slot:actions>
+</x-mary-nav>
 
-    <!-- Page Content -->
-    <main>
+{{-- MAIN --}}
+<x-mary-main full-width>
+    {{-- SIDEBAR --}}
+    <x-slot:sidebar
+        drawer="main-drawer"
+        class="bg-base-100 lg:bg-inherit"
+        collapsible
+        collapse-icon="o-bars-3"
+    >
+        <livewire:_layout.sidebar/>
+    </x-slot:sidebar>
+
+    {{-- The `$slot` goes here --}}
+    <x-slot:content>
         {{ $slot }}
-    </main>
-</div>
+    </x-slot:content>
+</x-mary-main>
+
+{{-- Toast --}}
+<x-mary-toast/>
 </body>
 </html>

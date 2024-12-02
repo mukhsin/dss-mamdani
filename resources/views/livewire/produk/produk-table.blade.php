@@ -87,6 +87,7 @@ new class extends Component {
         per-page="perPage"
         :per-page-values="[10, 20, 50, 100]"
     >
+
         @scope('cell_no', $produk, $page, $perPage)
         {{ $loop->iteration + (($page - 1) * $perPage) }}
         @endscope
@@ -126,7 +127,7 @@ new class extends Component {
         {{ __('Yakin ingin menghapus produk ' . $selectedName . '?') }}
         <x-slot:actions>
             <x-mary-button
-                label="Batal"
+                label="{{ __('Batal') }}"
                 wire:click="closeModalProdukDelete()"
             />
             <x-mary-button

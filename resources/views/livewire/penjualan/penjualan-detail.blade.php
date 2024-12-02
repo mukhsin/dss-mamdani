@@ -103,7 +103,7 @@ new class extends Component {
         {{ __('Yakin ingin menghapus penjualan ' . __($penjualan->nama_penjualan) . '?') }}
         <x-slot:actions>
             <x-mary-button
-                label="Batal"
+                label="{{ __('Batal') }}"
                 wire:click="closeModalPenjualanDelete()"
             />
             <x-mary-button

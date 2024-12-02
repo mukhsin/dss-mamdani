@@ -78,8 +78,8 @@ new class extends Component {
          />
 
          <div class="flex gap-2">
-             <x-mary-button label="Simpan" class="btn-primary" type="submit" spinner="save"/>
-             <x-mary-button label="Batal" wire:click="back()"/>
+             <x-mary-button label="{{ __('Simpan') }}" class="btn-primary" type="submit" spinner="save"/>
+             <x-mary-button label="{{ __('Batal') }}" wire:click="back()"/>
          </div>
      </x-mary-form>
 

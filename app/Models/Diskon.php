@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Diskon extends Model
@@ -13,10 +14,15 @@ class Diskon extends Model
     protected $table = 'tb_diskon';
     protected $primaryKey = 'diskon_id';
     protected $fillable = [
-        'jenis_diskon',
-        'besaran_diskon',
-        'keterangan',
+        // 'jenis_diskon',
+        // 'besaran_diskon',
+        // 'keterangan',
     ];
+
+    public function rekomendasi(): BelongsTo
+    {
+        return $this->belongsTo(Rekomendasi::class, 'rekomendasi_id', 'rekomendasi_id');
+    }
 
     public function list_penjualan(): HasMany
     {

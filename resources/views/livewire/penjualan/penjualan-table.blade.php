@@ -22,7 +22,6 @@ new class extends Component {
     public $perPage = 10;
 
     public $dateFilter;
-    // public $datePickerTheme;
 
     public function with(): array
     {
@@ -30,26 +29,20 @@ new class extends Component {
         $maxDate = $today->format('d-m-Y');
         $minDate = $today->copy()->subYears(5)->format('d-m-Y');
 
-        $endDate = $maxDate;
-        $startDate = $minDate;
+        $dateFrom = $minDate;
+        $dateTo = $maxDate;
         if ($this->dateFilter) {
             $dateRange = explode(' to ', $this->dateFilter);
-            $startDate = Carbon::createFromFormat('d-m-Y', $dateRange[0])->subDay();
-            $endDate = $startDate;
+            $dateFrom = Carbon::createFromFormat('d-m-Y', $dateRange[0])->subDay();
+            $dateTo = $dateFrom;
             if (count($dateRange) > 1) {
-                $endDate = Carbon::createFromFormat('d-m-Y', $dateRange[1]);
+                $dateTo = Carbon::createFromFormat('d-m-Y', $dateRange[1]);
             }
         }
 
-        // $this->datePickerTheme = 'default';
-        // $appTheme = config('app.theme', 'dark');
-        // if ($appTheme == 'dark') {
-        //     $this->datePickerTheme = $appTheme;
-        // }
-
         return [
             'list_penjualan' => Penjualan::with('produk')
-                ->whereBetween('tgl_pesanan', CarbonPeriod::create($startDate, $endDate))
+                ->whereBetween('tgl_pesanan', CarbonPeriod::create($dateFrom, $dateTo))
                 ->orderBy('tgl_pesanan', 'desc')
                 ->orderBy(
                     Produk::select('nama_produk')
@@ -69,7 +62,6 @@ new class extends Component {
             ],
             'datepicker_config' => [
                 'mode' => 'range',
-                // 'theme' => $this->datePickerTheme,
                 'altFormat' => 'd-m-Y',
                 'dateFormat' => 'd-m-Y',
                 'minDate' => $minDate,
@@ -143,6 +135,7 @@ new class extends Component {
         per-page="perPage"
         :per-page-values="[10, 20, 50, 100]"
     >
+
         @scope('cell_no', $penjualan, $page, $perPage)
         {{ $loop->iteration + (($page - 1) * $perPage) }}
         @endscope
@@ -187,7 +180,7 @@ new class extends Component {
         <b>@uang($selectedPrice)</b>
         <x-slot:actions>
             <x-mary-button
-                label="Batal"
+                label="{{ __('Batal') }}"
                 wire:click="closeModalPenjualanDelete()"
             />
             <x-mary-button

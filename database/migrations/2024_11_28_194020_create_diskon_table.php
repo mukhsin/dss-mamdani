@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('tb_diskon', function (Blueprint $table) {
             $table->id('diskon_id');
-            $table->string('jenis_diskon');
-            $table->integer('besaran_diskon');
-            $table->string('keterangan');
+            // $table->string('jenis_diskon');
+            // $table->integer('besaran_diskon');
+            // $table->string('keterangan');
+            $table->foreignId('rekomendasi_id');
             $table->timestamps();
+
+            $table->foreign('rekomendasi_id')->references('rekomendasi_id')->on('tb_rekomendasi');
         });
     }
 

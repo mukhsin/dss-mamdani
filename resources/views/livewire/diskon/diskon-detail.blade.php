@@ -95,7 +95,7 @@ new class extends Component {
         {{ __('Yakin ingin menghapus diskon ' . __($diskon->besaran_diskon.'% ') . __($diskon->jenis_diskon) . '?') }}
         <x-slot:actions>
             <x-mary-button
-                label="Batal"
+                label="{{ __('Batal') }}"
                 wire:click="closeModalDiskonDelete()"
             />
             <x-mary-button

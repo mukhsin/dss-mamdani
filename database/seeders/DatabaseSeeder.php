@@ -10,6 +10,7 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\VariasiProduk;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,11 +24,26 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@example.com',
         ]);
+        User::factory()->create([
+            'name' => 'Anita Wulandari',
+            'email' => 'anitaawd@gmail.com',
+        ]);
+        $this->command->info('User table seeded!');
 
-        Produk::factory(10)->create();
+        // Produk::factory(10)->create();
         // VariasiProduk::factory(50)->create();
 
         Diskon::factory(50)->create();
-        Penjualan::factory(500)->create();
+        $this->command->info('Diskon table seeded!');
+        // Penjualan::factory(500)->create();
+
+        $path = 'database/dump/dml_tb_produk.sql';
+        DB::unprepared(file_get_contents($path));
+        $this->command->info('Produk table seeded!');
+
+        $path = 'database/dump/dml_tb_penjualan.sql';
+        DB::unprepared(file_get_contents($path));
+        $this->command->info('Penjualan table seeded!');
+
     }
 }

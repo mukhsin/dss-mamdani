@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -32,5 +31,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Volt::route('/penjualan/create', 'penjualan.create')->name('penjualan.create');
     Volt::route('/penjualan/{penjualan_id}', 'penjualan.show')->name('penjualan.show');
     Volt::route('/penjualan/{penjualan_id}/edit', 'penjualan.edit')->name('penjualan.edit');
+
+    Volt::route('/rekomendasi/halaman1', 'rekomendasi.halaman1')->name('rekomendasi.halaman1');
+    Volt::route('/rekomendasi/halaman2/{rekomendasi_id}', 'rekomendasi.halaman2')->name('rekomendasi.halaman2');
+    Volt::route('/rekomendasi/halaman3/{rekomendasi_id}', 'rekomendasi.halaman3')->name('rekomendasi.halaman3');
 
 });
