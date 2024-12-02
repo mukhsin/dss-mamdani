@@ -1,14 +1,3 @@
-CREATE TABLE tb_produk
-(
-	produk_id    BIGINT UNSIGNED AUTO_INCREMENT
-		PRIMARY KEY,
-	nama_produk  VARCHAR(255)   NOT NULL,
-	berat_produk INT            NOT NULL,
-	harga_modal  DECIMAL(15, 2) NOT NULL,
-	created_at   TIMESTAMP      NULL,
-	updated_at   TIMESTAMP      NULL
-)
-	COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO dss_mamdani.tb_produk (produk_id, nama_produk, berat_produk, harga_modal, created_at, updated_at) VALUES (2, 'Shesile Beauty Glow - Paket + Acne Serum', 350, 135000.00, '2024-12-02 00:39:19', '2024-12-02 03:42:41');
 INSERT INTO dss_mamdani.tb_produk (produk_id, nama_produk, berat_produk, harga_modal, created_at, updated_at) VALUES (3, 'Erdhira Skincare - Sabun Wajah', 50, 20000.00, '2024-12-02 00:39:19', '2024-12-02 03:43:16');

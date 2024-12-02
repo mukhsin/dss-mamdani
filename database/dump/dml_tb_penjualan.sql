@@ -1,17 +1,3 @@
-CREATE TABLE tb_penjualan
-(
-	penjualan_id BIGINT UNSIGNED AUTO_INCREMENT
-		PRIMARY KEY,
-	produk_id    BIGINT UNSIGNED NOT NULL,
-	tgl_pesanan  DATE            NOT NULL,
-	harga_jual   DECIMAL(15, 2)  NOT NULL,
-	qty          INT             NOT NULL,
-	created_at   TIMESTAMP       NULL,
-	updated_at   TIMESTAMP       NULL,
-	CONSTRAINT tb_penjualan_produk_id_foreign
-		FOREIGN KEY ( produk_id ) REFERENCES tb_produk ( produk_id )
-)
-	COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO dss_mamdani.tb_penjualan (penjualan_id, produk_id, tgl_pesanan, harga_jual, qty, created_at, updated_at) VALUES (35, 3, '2024-12-01', 25000.00, 1, '2024-12-02 00:39:25', '2024-12-02 03:51:13');
 INSERT INTO dss_mamdani.tb_penjualan (penjualan_id, produk_id, tgl_pesanan, harga_jual, qty, created_at, updated_at) VALUES (62, 8, '2024-12-01', 140000.00, 2, '2024-12-02 00:39:26', '2024-12-02 03:53:24');
