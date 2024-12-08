@@ -21,8 +21,8 @@ new class extends Component {
         ['key' => 'harga_modal', 'label' => 'Harga Modal', 'class' => 'text-right'],
         ['key' => 'harga_jual', 'label' => 'Harga Jual', 'class' => 'text-right'],
         ['key' => 'harga_setelah_diskon', 'label' => 'Harga Setelah Diskon', 'class' => 'text-right'],
-        ['key' => 'total_qty', 'label' => 'Qty', 'class' => 'text-right'],
-        ['key' => 'total_pendapatan', 'label' => 'Total Pendapatan', 'class' => 'text-right'],
+        // ['key' => 'total_qty', 'label' => 'Qty', 'class' => 'text-right'],
+        ['key' => 'keuntungan', 'label' => 'Total Pendapatan', 'class' => 'text-right'],
         // ['key' => 'aksi', 'label' => 'Aksi', 'class' => 'text-center w-48'],
     ];
     public $list_produk;
@@ -68,8 +68,8 @@ new class extends Component {
         @uang($produk->harga_setelah_diskon)
         @endscope
 
-        @scope('cell_total_pendapatan', $produk)
-        @uang($produk->total_pendapatan)
+        @scope('cell_keuntungan', $produk)
+        @uang($produk->keuntungan)
         @endscope
 
     </x-mary-table>

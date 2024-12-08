@@ -59,8 +59,8 @@ class extends Component {
             $harga_setelah_diskon = (100 - $hasil_diskon) / 100 * $harga_jual;
             $data->harga_setelah_diskon = ceil($harga_setelah_diskon);
 
-            $total_pendapatan = $total_qty * $harga_setelah_diskon;
-            $data->total_pendapatan = ceil($total_pendapatan);
+            $keuntungan = $harga_setelah_diskon - $harga_modal;
+            $data->keuntungan = ceil($keuntungan);
         }
 
         $this->list_produk = $list_produk;
