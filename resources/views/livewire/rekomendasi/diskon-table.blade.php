@@ -1,5 +1,7 @@
 <?php
 
+use App\Fuzzy\Himpunan;
+use App\Fuzzy\Variabel;
 use App\Models\Penjualan;
 use App\Models\Produk;
 use App\Models\Rekomendasi;
@@ -12,8 +14,6 @@ new class extends Component {
 
     public string $title;
 
-    public Rekomendasi $rekomendasi;
-
     public $headers = [
         ['key' => 'no', 'label' => '#'],
         ['key' => 'nama_produk', 'label' => 'Nama Produk'],
@@ -21,31 +21,17 @@ new class extends Component {
         ['key' => 'harga_modal', 'label' => 'Harga Modal', 'class' => 'text-right'],
         ['key' => 'harga_jual', 'label' => 'Harga Jual', 'class' => 'text-right'],
         ['key' => 'harga_setelah_diskon', 'label' => 'Harga Setelah Diskon', 'class' => 'text-right'],
-        ['key' => 'total_keuntungan', 'label' => 'Total Keuntungan', 'class' => 'text-right'],
+        ['key' => 'total_qty', 'label' => 'Qty', 'class' => 'text-right'],
+        ['key' => 'total_pendapatan', 'label' => 'Total Pendapatan', 'class' => 'text-right'],
         // ['key' => 'aksi', 'label' => 'Aksi', 'class' => 'text-center w-48'],
     ];
     public $list_produk;
 
-    public function mount(Rekomendasi $rekomendasi): void
+    public function mount($list_produk): void
     {
-        $this->rekomendasi = $rekomendasi;
+        $this->list_produk = $list_produk;
         $this->title = 'Hasil Perhitungan';
 
-        $dateTo = $this->rekomendasi->tgl_akhir;
-        $dateFrom = $this->rekomendasi->tgl_awal;
-        $dateFrom = Carbon::parse($dateFrom)->subDay();
-        $list_produk = Produk::with([
-            'list_penjualan' => function ($query) use ($dateFrom, $dateTo) {
-                $query->whereBetween('tgl_pesanan', CarbonPeriod::create($dateFrom, $dateTo));
-            }])
-            ->whereHas('list_penjualan', function ($query) use ($dateFrom, $dateTo) {
-                $query->whereBetween('tgl_pesanan', CarbonPeriod::create($dateFrom, $dateTo));
-            })
-            ->orderBy('nama_produk', 'asc')
-            ->get();
-
-        // dd($list_produk->toArray());
-        $this->list_produk = $list_produk;
     }
 
 };
@@ -79,11 +65,11 @@ new class extends Component {
         @endscope
 
         @scope('cell_harga_setelah_diskon', $produk)
-        @uang($produk->harga_jual * (100 - $produk->hasil_diskon) / 100)
+        @uang($produk->harga_setelah_diskon)
         @endscope
 
-        @scope('cell_total_keuntungan', $produk)
-        @uang(($produk->harga_jual * (100 - $produk->hasil_diskon) / 100 - $produk->harga_modal) * $produk->qty)
+        @scope('cell_total_pendapatan', $produk)
+        @uang($produk->total_pendapatan)
         @endscope
 
     </x-mary-table>

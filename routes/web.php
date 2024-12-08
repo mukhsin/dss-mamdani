@@ -15,7 +15,12 @@ Route::view('profile', 'pages.profile')
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
-    Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
+    Route::get('/mamdani', function () {
+        $mamdani = new \App\Fuzzy\Mamdani(35 * 1000, 12 * 1000 * 1000);
+        dd($mamdani->getResult());
+    });
+
+    Volt::route('/dashboard', 'dashboard')->name('dashboard');
 
     Volt::route('/diskon', 'diskon.index')->name('diskon.index');
     Volt::route('/diskon/create', 'diskon.create')->name('diskon.create');
