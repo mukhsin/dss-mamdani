@@ -22,7 +22,7 @@ new class extends Component {
         ['key' => 'harga_jual', 'label' => 'Harga Jual', 'class' => 'text-right'],
         ['key' => 'harga_setelah_diskon', 'label' => 'Harga Setelah Diskon', 'class' => 'text-right'],
         // ['key' => 'total_qty', 'label' => 'Qty', 'class' => 'text-right'],
-        ['key' => 'keuntungan', 'label' => 'Total Pendapatan', 'class' => 'text-right'],
+        ['key' => 'keuntungan', 'label' => 'Keuntungan', 'class' => 'text-right'],
         // ['key' => 'aksi', 'label' => 'Aksi', 'class' => 'text-center w-48'],
     ];
     public $list_produk;
