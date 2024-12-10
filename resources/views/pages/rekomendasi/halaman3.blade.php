@@ -50,17 +50,18 @@ class extends Component {
             $mamdani = new Mamdani($harga_modal, $total_harga);
             $mamdani->prepareParameters($parameters);
             $hasil_diskon = $mamdani->getResult();
-            $data->hasil_diskon = ceil($hasil_diskon);
+            $data->hasil_diskon = number_format($hasil_diskon, 2, ',', '.');
 
-            $harga_jual = $total_harga / $total_qty;
-            $data->harga_jual = ceil($harga_jual);
+            // $harga_jual = $total_harga / $total_qty;
+            // $data->harga_jual = ceil($harga_jual);
             $data->total_qty = ceil($total_qty);
 
+            $harga_jual = $data->harga_jual;
             $harga_setelah_diskon = (100 - $hasil_diskon) / 100 * $harga_jual;
-            $data->harga_setelah_diskon = ceil($harga_setelah_diskon);
+            $data->harga_setelah_diskon = ($harga_setelah_diskon);
 
             $keuntungan = $harga_setelah_diskon - $harga_modal;
-            $data->keuntungan = ceil($keuntungan);
+            $data->keuntungan = ($keuntungan);
         }
 
         $this->list_produk = $list_produk;

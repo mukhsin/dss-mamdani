@@ -16,6 +16,7 @@ class Produk extends Model
         'nama_produk',
         'berat_produk',
         'harga_modal',
+        'harga_jual',
     ];
     protected $appends = [
         'id',

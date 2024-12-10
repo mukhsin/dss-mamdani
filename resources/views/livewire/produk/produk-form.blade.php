@@ -11,6 +11,7 @@ new class extends Component {
     public $nama_produk;
     public $berat_produk;
     public $harga_modal;
+    public $harga_jual;
 
     public function mount(Produk $produk): void
     {
@@ -22,6 +23,7 @@ new class extends Component {
             $this->nama_produk = $produk->nama_produk;
             $this->berat_produk = $produk->berat_produk;
             $this->harga_modal = $produk->harga_modal;
+            $this->harga_jual = $produk->harga_jual;
         }
     }
 
@@ -40,11 +42,13 @@ new class extends Component {
             'nama_produk' => ['required', 'string', 'max:255'],
             'berat_produk' => ['required', 'integer'],
             'harga_modal' => ['required', 'numeric'],
+            'harga_jual' => ['required', 'numeric'],
         ]);
 
         $this->produk->nama_produk = $validated['nama_produk'];
         $this->produk->berat_produk = $validated['berat_produk'];
         $this->produk->harga_modal = $validated['harga_modal'];
+        $this->produk->harga_jual = $validated['harga_jual'];
         $this->produk->save();
 
         redirect()->route('produk.show', ['produk_id' => $this->produk->produk_id]);
@@ -72,6 +76,7 @@ new class extends Component {
         <x-mary-input label="{{ __('Jenis Produk') }}" wire:model="nama_produk"/>
         <x-mary-input label="{{ __('Berat Produk') }}" wire:model="berat_produk" suffix="gram"/>
         <x-mary-input label="{{ __('Harga Modal') }}" wire:model="harga_modal" prefix="Rp"/>
+        <x-mary-input label="{{ __('Harga Jual') }}" wire:model="harga_jual" prefix="Rp"/>
 
         <div class="flex gap-2">
             <x-mary-button label="{{ __('Simpan') }}" class="btn-primary" type="submit" spinner="save"/>

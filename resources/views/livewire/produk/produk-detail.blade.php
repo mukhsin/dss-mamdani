@@ -94,6 +94,10 @@ new class extends Component {
             <td>Harga Modal</td>
             <td>@uang($produk->harga_modal)</td>
         </tr>
+        <tr class="hover:bg-base-200/50">
+            <td>Harga Jual</td>
+            <td>@uang($produk->harga_jual)</td>
+        </tr>
         </tbody>
     </table>
 

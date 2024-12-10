@@ -131,9 +131,9 @@ new class extends Component {
             <div class="flex-1 flex flex-col gap-4">
                 <h3 class="text-xl font-bold">Output</h3>
                 <div class="flex flex-col gap-2 w-1/2">
-                    <x-mary-input label="{{ __('Batas Kecil Diskon') }}" wire:model="batas_kecil_diskon" prefix="Rp"/>
-                    {{-- <x-mary-input label="{{ __('Batas Sedang Diskon') }}" wire:model="batas_sedang_diskon" prefix="Rp"/> --}}
-                    <x-mary-input label="{{ __('Batas Besar Diskon') }}" wire:model="batas_besar_diskon" prefix="Rp"/>
+                    <x-mary-input label="{{ __('Batas Kecil Diskon') }}" wire:model="batas_kecil_diskon" prefix="%"/>
+                    {{-- <x-mary-input label="{{ __('Batas Sedang Diskon') }}" wire:model="batas_sedang_diskon" prefix="%"/> --}}
+                    <x-mary-input label="{{ __('Batas Besar Diskon') }}" wire:model="batas_besar_diskon" prefix="%"/>
                 </div>
             </div>
         </div>

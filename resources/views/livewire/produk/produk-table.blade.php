@@ -26,6 +26,7 @@ new class extends Component {
                 ['key' => 'nama_produk', 'label' => 'Nama Produk'],
                 ['key' => 'berat_produk', 'label' => 'Berat Produk (gram)', 'class' => 'text-right'],
                 ['key' => 'harga_modal', 'label' => 'Harga Modal', 'class' => 'text-right'],
+                ['key' => 'harga_jual', 'label' => 'Harga Jual', 'class' => 'text-right'],
                 ['key' => 'aksi', 'label' => 'Aksi', 'class' => 'text-center w-48'],
             ],
         ];
@@ -95,6 +96,10 @@ new class extends Component {
 
         @scope('cell_harga_modal', $produk)
         @uang($produk->harga_modal)
+        @endscope
+
+        @scope('cell_harga_jual', $produk)
+        @uang($produk->harga_jual)
         @endscope
 
         @scope('cell_aksi', $produk)
