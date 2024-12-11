@@ -8,8 +8,8 @@ class Mamdani
 {
     private int $k = 1000;
     private int $m = 1000 * 1000;
-    private int $var1;
-    private int $var2;
+    private int $var1; //harga_modal
+    private int $var2; //harga_jual
     private Variabel $modal;
     private Variabel $untung;
     private Variabel $diskon;
@@ -29,7 +29,6 @@ class Mamdani
         $this->var2 = $var2;
     }
 
-    #[NoReturn]
     public function getResult(): float|int
     {
         $this->prepareRules();
@@ -97,12 +96,12 @@ class Mamdani
         ];
     }
 
-    private function preparePredicates(): void
+    private function preparePredicates(): void  //proses fuzzyfikasi dan inferensi (MIN)
     {
         foreach ($this->rules as $key => $rule) {
             /** @var Himpunan $modal */
             $modal = $rule['modal'];
-            $indexModal = $modal->getY($this->var1);
+            $indexModal = $modal->getY($this->var1); //harga_modal
 
             /** @var Himpunan $untung */
             $untung = $rule['untung'];

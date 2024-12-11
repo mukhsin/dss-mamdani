@@ -17,7 +17,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('/mamdani', function () {
         $mamdani = new \App\Fuzzy\Mamdani(35 * 1000, 12 * 1000 * 1000);
-        dd($mamdani->getResult());
+        //dd($mamdani->getResult());
     });
 
     Volt::route('/dashboard', 'dashboard')->name('dashboard');

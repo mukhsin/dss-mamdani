@@ -40,23 +40,13 @@ class extends Component {
         // dd($list_produk->toArray());
         foreach ($list_produk as $data) {
             $harga_modal = $data->harga_modal;
-            $total_harga = 0;
-            $total_qty = 0;
-            foreach ($data->list_penjualan as $penjualan) {
-                $total_harga += $penjualan->total_harga;
-                $total_qty += $penjualan->qty;
-            }
+            $harga_jual = $data->harga_jual;
 
-            $mamdani = new Mamdani($harga_modal, $total_harga);
+            $mamdani = new Mamdani($harga_modal, $harga_jual);
             $mamdani->prepareParameters($parameters);
             $hasil_diskon = $mamdani->getResult();
             $data->hasil_diskon = number_format($hasil_diskon, 2, ',', '.');
 
-            // $harga_jual = $total_harga / $total_qty;
-            // $data->harga_jual = ceil($harga_jual);
-            $data->total_qty = ceil($total_qty);
-
-            $harga_jual = $data->harga_jual;
             $harga_setelah_diskon = (100 - $hasil_diskon) / 100 * $harga_jual;
             $data->harga_setelah_diskon = ($harga_setelah_diskon);
 
@@ -65,13 +55,6 @@ class extends Component {
         }
 
         $this->list_produk = $list_produk;
-        // dd($list_produk->toArray());
-
-        // $mamdani = new Mamdani(35 * 1000, 12 * 1000 * 1000);
-        // $mamdani->prepareParameters($parameters);
-        // $diskonProduk = $mamdani->getResult();
-        // dd($diskonProduk);
-
     }
 
     private function prepareParameters(): array
