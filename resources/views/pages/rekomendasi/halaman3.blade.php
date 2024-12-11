@@ -36,16 +36,19 @@ class extends Component {
             ->get();
 
         $parameters = $this->prepareParameters();
-
-        // dd($list_produk->toArray());
         foreach ($list_produk as $data) {
             $harga_modal = $data->harga_modal;
             $harga_jual = $data->harga_jual;
 
-            $mamdani = new Mamdani($harga_modal, $harga_jual);
-            $mamdani->prepareParameters($parameters);
+            $total_qty = 0;
+            foreach ($data->list_penjualan as $penjualan) {
+                $total_qty += $penjualan->qty;
+            }
+
+            $mamdani = new Mamdani($harga_modal, $harga_jual * $total_qty, $parameters);
             $hasil_diskon = $mamdani->getResult();
             $data->hasil_diskon = number_format($hasil_diskon, 2, ',', '.');
+            $data->list_step = $mamdani->getListStep();
 
             $harga_setelah_diskon = (100 - $hasil_diskon) / 100 * $harga_jual;
             $data->harga_setelah_diskon = ($harga_setelah_diskon);
@@ -54,7 +57,9 @@ class extends Component {
             $data->keuntungan = ($keuntungan);
         }
 
-        $this->list_produk = $list_produk;
+        $this->list_produk = $list_produk->toArray();
+        // dd($list_produk->toArray());
+
     }
 
     private function prepareParameters(): array
@@ -69,8 +74,8 @@ class extends Component {
             new Himpunan('besar',
                 (float)($batas->batas_kecil_modal),
                 (float)($batas->batas_besar_modal),
-                (float)($batas->batas_besar_modal * 2),
-                (float)($batas->batas_besar_modal * 2)),
+                (float)($batas->batas_besar_modal + $batas->batas_kecil_modal),
+                (float)($batas->batas_besar_modal + $batas->batas_kecil_modal)),
         ]);
         $untung = new Variabel('untung', [
             new Himpunan('kecil',
@@ -81,8 +86,8 @@ class extends Component {
             new Himpunan('besar',
                 (float)($batas->batas_kecil_keuntungan),
                 (float)($batas->batas_besar_keuntungan),
-                (float)($batas->batas_besar_keuntungan * 2),
-                (float)($batas->batas_besar_keuntungan * 2)),
+                (float)($batas->batas_besar_keuntungan + $batas->batas_besar_keuntungan),
+                (float)($batas->batas_besar_keuntungan + $batas->batas_besar_keuntungan)),
         ]);
         $diskon = new Variabel('diskon', [
             new Himpunan('kecil',
@@ -93,8 +98,8 @@ class extends Component {
             new Himpunan('besar',
                 (float)($batas->batas_kecil_diskon),
                 (float)($batas->batas_besar_diskon),
-                (float)($batas->batas_besar_diskon * 2),
-                (float)($batas->batas_besar_diskon * 2)),
+                (float)($batas->batas_besar_diskon + $batas->batas_kecil_diskon),
+                (float)($batas->batas_besar_diskon + $batas->batas_kecil_diskon)),
         ]);
 
         return [

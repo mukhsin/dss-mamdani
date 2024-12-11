@@ -189,4 +189,21 @@ class Himpunan
         return $this->p1 + ($y * ($this->p2 - $this->p1));
     }
 
+    public function getPoints(): array
+    {
+        if ($this->getBentuk() == Bentuk::TURUN) {
+            return [1, 1, 0, null];
+        }
+        if ($this->getBentuk() == Bentuk::NAIK) {
+            return [null, 0, 1, 1];
+        }
+        // if ($this->getBentuk() == Bentuk::GUNUNG_LANCIP) {
+        //     return [0, 0, 1, 0];
+        // }
+        // if ($this->getBentuk() == Bentuk::GUNUNG_DATAR) {
+        //     return [0, 0, 1, 1, 0];
+        // }
+        return [null, null, null, null];
+    }
+
 }
